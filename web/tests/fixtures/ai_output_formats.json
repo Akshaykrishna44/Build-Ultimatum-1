@@ -1,0 +1,17 @@
+[
+  {"name": "clean JSON", "text": "{\"intent\":\"make_manufacture\",\"summary\":\"Make shoes.\"}", "expect": {"intent": "make_manufacture"}},
+  {"name": "markdown fence with prose before and after", "text": "Here is the JSON you asked for:\n```json\n{\"intent\": \"buy_source\", \"summary\": \"Buy tees.\"}\n```\nLet me know if you need more detail.", "expect": {"intent": "buy_source"}},
+  {"name": "braces in prose after the JSON", "text": "{\"intent\": \"question\", \"answer\": \"Use OPC 53.\"}\n\nNote: prices are in {INR} and may vary {by state}.", "expect": {"intent": "question"}},
+  {"name": "example object before the real one", "text": "Format: {\"intent\": \"...\"}\nAnswer:\n{\"intent\": \"build_construct\", \"summary\": \"Temple.\"}", "expect": {"intent": "build_construct"}},
+  {"name": "trailing commas", "text": "{\"intent\": \"make_manufacture\", \"paths\": [\"make\", \"buy\",],}", "expect": {"intent": "make_manufacture"}},
+  {"name": "line and block comments", "text": "{\n  // intent chosen from the list\n  \"intent\": \"plan_project\", /* the user is vague */\n  \"summary\": \"See https://example.in/a//b for details\"\n}", "expect": {"intent": "plan_project", "summary": "See https://example.in/a//b for details"}},
+  {"name": "curly quotes as delimiters", "text": "{“intent”: “buy_source”, “summary”: “Buy cotton tees.”}", "expect": {"intent": "buy_source"}},
+  {"name": "NaN and Infinity literals", "text": "{\"intent\": \"estimate_cost\", \"bom\": [{\"component\": \"x\", \"rate_low\": NaN, \"rate_high\": Infinity}]}", "expect": {"intent": "estimate_cost"}},
+  {"name": "braces and quotes inside strings", "text": "{\"intent\": \"question\", \"answer\": \"Use \\\"M25\\\" concrete {not M20} for slabs\"}", "expect": {"answer": "Use \"M25\" concrete {not M20} for slabs"}},
+  {"name": "truncated in the middle of a list (answer cut off)", "text": "{\"product_title\": \"T-shirts\", \"bom\": [{\"component\": \"Fabric\", \"rate_likely\": 300}, {\"component\": \"Thread\", \"rate_likely\": 12}, {\"component\": \"Lab", "expect": {"product_title": "T-shirts"}, "expect_len": {"bom": 2}},
+  {"name": "truncated inside a string", "text": "{\"intent\": \"make_manufacture\", \"summary\": \"Make mobile phones in Noi", "expect": {"intent": "make_manufacture"}},
+  {"name": "BOM and spaces before the JSON", "text": "﻿   \n\n{\"intent\": \"question\"}", "expect": {"intent": "question"}},
+  {"name": "Indian-language text inside", "text": "{\"intent\": \"buy_source\", \"summary\": \"200 டி-ஷர்ட் வாங்க வேண்டும் / 500 कुर्सियाँ\"}", "expect": {"summary": "200 டி-ஷர்ட் வாங்க வேண்டும் / 500 कुर्सियाँ"}},
+  {"name": "no JSON at all", "text": "I'm sorry, I can't help with that.", "error": true},
+  {"name": "empty answer", "text": "", "error": true}
+]

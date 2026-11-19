@@ -1,0 +1,184 @@
+[
+  {
+    "product": "500 ICU ventilators for hospitals",
+    "expect": {
+      "engine": "ai",
+      "ambiguous": false,
+      "packs": [
+        "medical"
+      ],
+      "prefill": {}
+    }
+  },
+  {
+    "product": "PEB warehouse 80 × 40 m",
+    "expect": {
+      "engine": "building",
+      "ambiguous": false,
+      "packs": [],
+      "prefill": {
+        "project_type": "warehouse",
+        "length": 80,
+        "width": 40
+      }
+    }
+  },
+  {
+    "product": "Independent house, 2 floors, 15 × 10 m",
+    "expect": {
+      "engine": "building",
+      "ambiguous": false,
+      "packs": [],
+      "prefill": {
+        "project_type": "house",
+        "floors": 2,
+        "length": 15,
+        "width": 10
+      }
+    }
+  },
+  {
+    "product": "garment factory in Tiruppur",
+    "expect": {
+      "engine": "ai",
+      "ambiguous": true,
+      "packs": [
+        "textile"
+      ],
+      "prefill": {
+        "project_type": "industrial",
+        "industry_class": "light"
+      }
+    }
+  },
+  {
+    "product": "Medium-industry factory building 60 × 30 m with 10 t EOT crane",
+    "expect": {
+      "engine": "building",
+      "ambiguous": false,
+      "packs": [],
+      "prefill": {
+        "project_type": "industrial",
+        "industry_class": "medium",
+        "crane": "10",
+        "length": 60,
+        "width": 30
+      }
+    }
+  },
+  {
+    "product": "steel plant shed 120 x 40 m",
+    "expect": {
+      "engine": "building",
+      "ambiguous": false,
+      "packs": [],
+      "prefill": {
+        "project_type": "industrial",
+        "industry_class": "heavy",
+        "length": 120,
+        "width": 40
+      }
+    }
+  },
+  {
+    "product": "10,000 43-inch LED TVs",
+    "expect": {
+      "engine": "ai",
+      "ambiguous": false,
+      "packs": [
+        "electronics"
+      ],
+      "prefill": {}
+    }
+  },
+  {
+    "product": "Organic paddy on 100 acres",
+    "expect": {
+      "engine": "ai",
+      "ambiguous": false,
+      "packs": [
+        "agriculture"
+      ],
+      "prefill": {}
+    }
+  },
+  {
+    "product": "api server for tasks",
+    "expect": {
+      "engine": "ai",
+      "ambiguous": false,
+      "packs": [],
+      "prefill": {}
+    }
+  },
+  {
+    "product": "oxygen concentrators",
+    "expect": {
+      "engine": "ai",
+      "ambiguous": false,
+      "packs": [
+        "medical"
+      ],
+      "prefill": {}
+    }
+  },
+  {
+    "product": "50,000 pairs of leather shoes",
+    "expect": {
+      "engine": "ai",
+      "ambiguous": false,
+      "packs": [
+        "textile"
+      ],
+      "prefill": {}
+    }
+  },
+  {
+    "product": "auto components gear shafts",
+    "expect": {
+      "engine": "ai",
+      "ambiguous": false,
+      "packs": [
+        "mechanical"
+      ],
+      "prefill": {
+        "project_type": "industrial",
+        "industry_class": "medium"
+      }
+    }
+  },
+  {
+    "product": "5 lakh cans of mango pulp",
+    "expect": {
+      "engine": "ai",
+      "ambiguous": false,
+      "packs": [
+        "food"
+      ],
+      "prefill": {}
+    }
+  },
+  {
+    "product": "factory building with 25 t crane",
+    "expect": {
+      "engine": "building",
+      "ambiguous": false,
+      "packs": [],
+      "prefill": {
+        "project_type": "industrial",
+        "crane": "20"
+      }
+    }
+  },
+  {
+    "product": "2 lakh cotton T-shirts",
+    "expect": {
+      "engine": "ai",
+      "ambiguous": false,
+      "packs": [
+        "textile"
+      ],
+      "prefill": {}
+    }
+  }
+]

@@ -1,0 +1,89 @@
+openapi: 3.1.0
+info:
+  title: Ultimatum Engine: Building API (spec 004)
+  version: 0.6.0-draft
+paths:
+  /v1/building/questions:
+    post:
+      summary: Visible stages and questions for the current answers (FR-004-03)
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/AnswersIn' }
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  answers: { type: object, description: answers with defaults resolved }
+                  stages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string }
+                        title: { type: string }
+                        intro: { type: string }
+                        questions:
+                          type: array
+                          items: { $ref: '#/components/schemas/Question' }
+  /v1/building/estimate:
+    post:
+      summary: Full takeoff, cutting, welding, concrete, BOQ and cost (FR-004-04)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/AnswersIn'
+                - type: object
+                  properties:
+                    rates: { type: object, additionalProperties: { type: object, properties: { value: { type: number } } } }
+      responses:
+        '200': { content: { application/json: { schema: { $ref: '#/components/schemas/BuildingResult' } } } }
+  /v1/building/projects:
+    post:
+      summary: Create a building project (FR-004-05)
+      requestBody: { content: { application/json: { schema: { $ref: '#/components/schemas/AnswersIn' } } } }
+      responses: { '200': { description: project with result } }
+  /v1/building/projects/{id}:
+    get: { summary: Get project with recalculated result, responses: { '200': { description: ok }, '404': { description: not found } } }
+    patch:
+      summary: Update answers, touched or rates (FR-004-05)
+      responses: { '200': { description: ok } }
+  /v1/building/projects/{id}/export/boq.csv:
+    get: { summary: BOQ as CSV (FR-004-05), responses: { '200': { content: { text/csv: {} } } } }
+components:
+  schemas:
+    AnswersIn:
+      type: object
+      properties:
+        answers: { type: object, description: 'question id → value' }
+        touched: { type: object, description: 'question id → true when the user set it (defaults recompute for others)' }
+    Question:
+      type: object
+      properties:
+        id: { type: string }
+        q: { type: string }
+        why: { type: string }
+        type: { enum: [single, number] }
+        unit: { type: string }
+        options: { type: array, items: { type: object, properties: { value: { type: string }, label: { type: string }, note: { type: string } } } }
+        default: {}
+    BuildingResult:
+      type: object
+      properties:
+        k: { type: string, description: light | medium | heavy | house }
+        geom: { type: object }
+        steel: { type: object, description: members, groups (cutting plans), totals, perM2, lossPct }
+        welding: { type: object, description: process, metal, consumable, arcHr, welderHr, gasM3, fluxKg, kWh, log[] }
+        concrete: { type: array }
+        concreteTotals: { type: object }
+        masonry: { type: object }
+        envelope: { type: object }
+        paint: { type: object }
+        boq: { type: array, items: { type: object, properties: { cat: { type: string }, item: { type: string }, qty: { type: number }, unit: { type: string }, rate: { type: number }, amount: { type: number }, note: { type: string } } } }
+        cost: { type: object, properties: { direct: { type: number }, overhead: { type: number }, contingency: { type: number }, margin: { type: number }, gst: { type: number }, total: { type: number }, perM2: { type: number }, perSqft: { type: number } } }
+        checks: { type: array, items: { type: object, properties: { level: { enum: [ok, warn, info] }, text: { type: string } } } }

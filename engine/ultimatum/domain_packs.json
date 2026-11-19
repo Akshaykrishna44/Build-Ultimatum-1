@@ -1,0 +1,343 @@
+{
+  "_about": "Domain knowledge packs. When a request matches a pack's keywords, its expert hints are injected into the research and estimate prompts. A copy lives at web/src/domainPacks.json, and a test keeps the two identical.",
+  "universal": "Think like a senior manufacturing engineer. Build a MULTI-LEVEL bill of materials: product → assemblies/modules → components → raw materials. Decide MAKE vs BUY for each line. Always cover PACKAGING (primary, secondary/carton, tertiary/pallet, labels, manuals, inserts). Give wastage per line WITH its process reason (cutting/nesting, moulding runner, machining chips, SMT attrition, test failure/rejection, breakage in transit, process loss, shelf-life expiry). Include one-time costs: design/R&D, tooling/moulds/dies/fixtures, certification/testing, validation, line setup.",
+  "packs": [
+    {
+      "id": "medical",
+      "label": "Medical device",
+      "keywords": [
+        "ventilator",
+        "medical",
+        "hospital",
+        "surgical",
+        "implant",
+        "diagnostic",
+        "patient",
+        "infusion",
+        "oxygen concentrator",
+        "patient monitor",
+        "syringe",
+        "catheter",
+        "stent",
+        "defibrillator",
+        "dialysis",
+        "nebulizer",
+        "nebuliser",
+        "bp monitor",
+        "glucometer",
+        "orthopaedic",
+        "orthopedic",
+        "x-ray",
+        "ecg",
+        "pulse oximeter"
+      ],
+      "hints": "REGULATED MEDICAL DEVICE. India: CDSCO under Medical Devices Rules 2017; risk class A–D (life-support devices such as ventilators are typically Class C). Manufacturing licence (MD-5 for A/B, MD-9 for C/D) and a Device Master File plus Plant Master File. QMS ISO 13485, risk management ISO 14971, electrical safety IEC 60601-1, EMC IEC 60601-1-2, usability IEC 62366-1, software lifecycle IEC 62304, alarms IEC 60601-1-8, product-specific particular standards (e.g. ISO 80601-2-12 critical-care ventilators, ISO 80601-2-79/80 home and support ventilators), biocompatibility ISO 10993 for patient-contact parts (breathing circuits, masks), clinical evaluation / performance evaluation. Ask about intended use, patient population (adult/paediatric/neonatal), invasive vs non-invasive, ventilation modes, oxygen source (high-pressure O2 vs low-flow), turbine vs compressed-air driven, battery backup hours, display/alarms, warranty and service network. Typical assemblies: pneumatic module (turbine/blower, proportional valves, O2 blender, flow and pressure sensors, exhalation valve, filters, manifolds), electronics (main controller PCB, sensor PCB, power supply, battery pack, display/touch, alarm speaker), embedded software, enclosure (medical-grade PC/ABS mouldings, sheet-metal chassis), cables and harness, accessories (breathing circuit, humidifier, test lung, trolley), labelling, IFU, packaging (foam, double-wall carton, pallet, shock indicator). Wastage drivers: SMT attrition, PCB first-pass yield, moulding runners/regrind limits (medical grade often no regrind), calibration and burn-in failures, final-test rejection, sterile/single-use accessory scrap. Large one-time costs: R&D/verification, standards testing at an accredited lab, EMC testing, clinical evaluation, CDSCO fees and audits, ISO 13485 certification, moulds and test jigs. Ongoing: per-unit traceability (UDI/serial), calibration, 100% functional test, documentation.",
+      "stages": [
+        "Intended use & regulatory class",
+        "Clinical performance & specifications",
+        "Assemblies & make/buy",
+        "Packaging, labelling & IFU"
+      ]
+    },
+    {
+      "id": "electronics",
+      "label": "Electronics",
+      "keywords": [
+        "tv",
+        "television",
+        "phone",
+        "pcb",
+        "electronic",
+        "led",
+        "inverter",
+        "battery",
+        "charger",
+        "controller",
+        "sensor",
+        "iot",
+        "laptop",
+        "router",
+        "smart meter",
+        "drone",
+        "speaker",
+        "ups",
+        "solar inverter",
+        "mobile phone",
+        "smartphone",
+        "handset",
+        "feature phone",
+        "mobile manufacturing"
+      ],
+      "hints": "ELECTRONICS MANUFACTURING. Assemblies: PCBAs (bare PCB, components, SMT/THT), display, power supply, battery, enclosure, harness, firmware. Wastage: SMT attrition (≈0.5–2% for reel passives, ≈0.1–0.5% for ICs), solder paste and stencil loss, PCB panel-utilisation loss, first-pass yield (95–99%) and rework, burn-in and ICT/FCT failures. India: BIS CRS registration for notified products, WPC for wireless, BEE star label where applicable, E-waste EPR, RoHS, EMI/EMC. PLI schemes may apply. Ask about volumes, component sourcing (China/Taiwan/local), EMS vs in-house SMT, warranty rate."
+    },
+    {
+      "id": "food",
+      "label": "Food processing",
+      "keywords": [
+        "food",
+        "pulp",
+        "juice",
+        "snack",
+        "biscuit",
+        "dairy",
+        "milk",
+        "bakery",
+        "beverage",
+        "spice",
+        "pickle",
+        "frozen",
+        "chocolate",
+        "noodles",
+        "flour",
+        "oil mill"
+      ],
+      "hints": "FOOD PROCESSING. FSSAI licence, labelling regulations, shelf-life studies, HACCP/ISO 22000, water testing. Yield from raw produce (peel/seed/trim loss), process loss, evaporation, packaging fill tolerance, breakage, expiry and returns, cold chain. Seasonal raw-material availability and mandi prices. Packaging: food-grade primary pack, carton, pallet."
+    },
+    {
+      "id": "textile",
+      "label": "Textiles, garments & footwear",
+      "keywords": [
+        "shirt",
+        "t-shirt",
+        "garment",
+        "apparel",
+        "textile",
+        "fabric",
+        "yarn",
+        "shoe",
+        "footwear",
+        "leather",
+        "bag",
+        "jeans",
+        "saree",
+        "uniform"
+      ],
+      "hints": "TEXTILES / GARMENTS / FOOTWEAR. Marker efficiency (75–88%), cutting loss, shrinkage allowance, size set and ratio, SAM per operation, line efficiency, AQL inspection (2.5), rejection 1–3%, trims and accessories, washing/finishing loss. Leather: hide grade, cutting wastage 10–18%."
+    },
+    {
+      "id": "agriculture",
+      "label": "Agriculture",
+      "keywords": [
+        "paddy",
+        "rice",
+        "crop",
+        "farm",
+        "cultivation",
+        "acre",
+        "seed",
+        "plantation",
+        "organic",
+        "horticulture",
+        "dairy farm",
+        "poultry",
+        "fishery",
+        "greenhouse"
+      ],
+      "hints": "AGRICULTURE. Seed rate, germination %, nursery, land preparation, fertiliser (NPK schedule) and manure, irrigation (water source, drip/flood), plant protection, labour days per operation, mechanisation hire, harvest yield, post-harvest loss (5–15%), drying/storage, MSP vs mandi prices, crop insurance (PMFBY), organic certification (NPOP) conversion period."
+    },
+    {
+      "id": "pharma_chem",
+      "label": "Pharma & chemicals",
+      "keywords": [
+        "pharma",
+        "tablet",
+        "capsule",
+        "drug",
+        "active pharmaceutical",
+        "chemical",
+        "paint",
+        "fertilizer",
+        "fertiliser",
+        "detergent",
+        "cosmetic",
+        "soap",
+        "resin",
+        "solvent",
+        "adhesive"
+      ],
+      "hints": "PHARMA / CHEMICALS. Pharma: Revised Schedule M GMP, drug licence, stability studies, batch yield (95–99%), cleaning validation, QC release testing. Chemicals: batch vs continuous, reaction yield, solvent recovery, effluent treatment (ETP/ZLD), Pollution Control Board consent, hazardous-waste rules, PESO for flammables, MSDS."
+    },
+    {
+      "id": "mechanical",
+      "label": "Mechanical / automotive",
+      "keywords": [
+        "auto",
+        "automotive",
+        "gear",
+        "shaft",
+        "casting",
+        "forging",
+        "machining",
+        "pump",
+        "valve",
+        "motor",
+        "engine",
+        "bicycle",
+        "tractor",
+        "bearing",
+        "fastener",
+        "machine"
+      ],
+      "hints": "MECHANICAL / AUTOMOTIVE. Casting yield (50–75%, risers and gating), forging flash (10–20%), machining chip loss, heat treatment, surface treatment, inspection (CMM), PPAP/APQP, IATF 16949 for OEM supply, fixtures and gauges, rejection/rework %."
+    },
+    {
+      "id": "plastics",
+      "label": "Plastics & moulding",
+      "keywords": [
+        "plastic",
+        "moulding",
+        "molding",
+        "injection",
+        "pet bottle",
+        "container",
+        "pipe",
+        "polymer",
+        "rubber"
+      ],
+      "hints": "PLASTICS. Material grade and MFI, shot weight, runner/sprue weight (cold runner) vs hot runner, regrind % allowed, cycle time, cavitation, mould cost and life, start-up scrap, rejection. Plastic packaging EPR."
+    },
+    {
+      "id": "construction",
+      "label": "Construction (temples, places of worship, public buildings)",
+      "keywords": [
+        "temple",
+        "kovil",
+        "koil",
+        "mandir",
+        "devasthanam",
+        "gopuram",
+        "church",
+        "chapel",
+        "mosque",
+        "masjid",
+        "gurudwara",
+        "dargah",
+        "monastery",
+        "mutt",
+        "ashram",
+        "community hall",
+        "kalyana mandapam",
+        "marriage hall",
+        "auditorium",
+        "stadium",
+        "swimming pool",
+        "memorial",
+        "monument"
+      ],
+      "stages": [
+        "Structure type, style & size",
+        "Site, foundation & approvals"
+      ],
+      "hints": "CONSTRUCTION PROJECT, not a factory product: treat quantity as 1 project and ask about the structure itself. Ask: purpose and who it is for (trust, community, family), plot size and location, built-up area and capacity (people), style and tradition, structural system (load-bearing stone, RCC frame with stone cladding, or traditional), materials and finishes, services (power, lighting, sound, water, drainage, toilets, parking), approvals and timeline. TEMPLES: follow Agama / Shilpa Shastra and Vastu as the client wishes; styles Dravida (south: vimana and gopuram), Nagara (north: shikhara), Vesara; parts garbhagriha, antarala, ardha and maha mandapa, vimana or shikhara, gopuram, prakara wall, dhwaja stambha, kitchen (madapalli), temple tank. Materials: granite (Tamil Nadu, Karnataka), sandstone (Rajasthan), Makrana marble, RCC with lime or stucco work for gopurams; skilled sthapathis and stone carvers (Mamallapuram, Karaikudi, Rajasthan) — carving labour is a major cost line and stone dressing and carving waste is high; panchaloha or stone idols. Approvals: local body building permission, structural stability per NBC and IS codes, seismic zone and soil test, fire NOC for large halls, HR&CE or trust rules where applicable (e.g. Tamil Nadu), ASI rules near protected monuments. OTHER PLACES OF WORSHIP AND PUBLIC BUILDINGS: capacity, hall spans, acoustics, ventilation, fire exits, accessibility."
+    }
+  ],
+  "router": {
+    "_about": "Routes a request to the engineered Building engine or the AI product engine. Building wins when a structure word is present; 'factory/plant/unit' alone is ambiguous (could mean the building or the product line), so both are offered.",
+    "building_keywords": [
+      "building",
+      "construction",
+      "construct",
+      "civil work",
+      "shed",
+      "peb",
+      "pre-engineered",
+      "warehouse",
+      "godown",
+      "house",
+      "villa",
+      "bungalow",
+      "duplex",
+      "residence",
+      "apartment",
+      "flat",
+      "office building",
+      "showroom",
+      "mall",
+      "structure",
+      "steel structure",
+      "industrial building",
+      "factory building",
+      "plinth",
+      "foundation",
+      "roofing",
+      "compound wall"
+    ],
+    "ambiguous_keywords": [
+      "factory",
+      "plant",
+      "manufacturing unit",
+      "workshop",
+      "industry",
+      "mill"
+    ],
+    "project_type": {
+      "house": [
+        "house",
+        "villa",
+        "bungalow",
+        "duplex",
+        "residence",
+        "home",
+        "independent house"
+      ],
+      "warehouse": [
+        "warehouse",
+        "godown",
+        "storage shed",
+        "logistics park",
+        "cold storage"
+      ],
+      "commercial": [
+        "office building",
+        "showroom",
+        "mall",
+        "commercial",
+        "apartment",
+        "flat",
+        "school building",
+        "hospital building",
+        "hotel"
+      ],
+      "industrial": [
+        "factory",
+        "industrial",
+        "shed",
+        "peb",
+        "workshop",
+        "plant",
+        "manufacturing unit",
+        "mill"
+      ]
+    },
+    "industry_class": {
+      "heavy": [
+        "steel plant",
+        "foundry",
+        "forging",
+        "rolling mill",
+        "heavy engineering",
+        "cement",
+        "shipyard",
+        "heavy industry"
+      ],
+      "light": [
+        "garment",
+        "textile",
+        "apparel",
+        "electronics assembly",
+        "food",
+        "packaging",
+        "light industry",
+        "assembly unit"
+      ],
+      "medium": [
+        "machine shop",
+        "auto component",
+        "fabrication",
+        "plastics",
+        "medium industry",
+        "engineering unit"
+      ]
+    }
+  }
+}
